@@ -1,0 +1,14 @@
+H:\Developer\ITAS\ITAS\bin\Debug\ITAS.exe.config
+H:\Developer\ITAS\ITAS\bin\Debug\ITAS.exe
+H:\Developer\ITAS\ITAS\bin\Debug\ITAS.pdb
+H:\Developer\ITAS\ITAS\bin\Debug\ITAS.xml
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.vbprojAssemblyReference.cache
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_Startup.resources
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.Resources.resources
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.vbproj.GenerateResource.cache
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.exe
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.xml
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.pdb
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_main.resources
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_debug.resources
+H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_preferences.resources
