@@ -15,7 +15,6 @@ Namespace Common
     Public Class FileManager
 
         Private NL As String = Environment.NewLine
-        Private temp As New _temp._disp
         Private D As New DebugManager
 
         'Returns log file path as string (implicit)
@@ -33,7 +32,6 @@ Namespace Common
                         GetUserLogPath = allFiles(i)
                         foundFile = True
                         Return GetUserLogPath
-                        temp.Show("Log file..." + NL, "found your file!", GetUserLogPath)
                         Exit Function
                     Else
                         foundFile = False
@@ -43,7 +41,6 @@ Namespace Common
                     GetUserLogPath = ParentPath + Initials + "_log.txt"
                     CreateBlankFile(GetUserLogPath)
                     WriteToLog("Log File For:" + Initials + NL + "Created " + Today.ToShortDateString + " @ " + Today.ToShortTimeString + NL)
-                    temp.Show("Didnt find your file. Creating a new file.", "file name:" + GetUserLogPath)
                     Return GetUserLogPath
                 End If
             End If
@@ -56,25 +53,28 @@ Namespace Common
                 strw = My.Computer.FileSystem.OpenTextFileWriter(FullPath, True)
                 strw.Write("")
                 strw.Close()
-                temp.Show("FullPath", FullPath)
             Else
                 D.ErMsg(Me, "The File (" + FullPath + ") does not exist.", "01")
             End If
         End Sub
         'Writes to any txt file
         Public Sub WriteToFile(PathName As String, Content As String, Optional DoubleSpacePadding As Boolean = False)
-            If PathName.Contains("txt") = False Then
-                D.ErMsg(Me, "Cannot write to file (" + PathName + ") because path is either invalid or has invalid extension.", "02")
-                Exit Sub
-            End If
-            Dim strw1 As StreamWriter
-            strw1 = My.Computer.FileSystem.OpenTextFileWriter(PathName, True)
-            If DoubleSpacePadding = True Then
-                strw1.Write(NL + Content + NL)
+            If Directory.Exists(PathName) Then
+                If PathName.Contains("txt") = False Then
+                    D.ErMsg(Me, "Cannot write to file (" + PathName + ") because path is either invalid or has invalid extension.", "02")
+                    Exit Sub
+                End If
+                Dim strw1 As StreamWriter
+                strw1 = My.Computer.FileSystem.OpenTextFileWriter(PathName, True)
+                If DoubleSpacePadding = True Then
+                    strw1.Write(NL + Content + NL)
+                Else
+                    strw1.Write(Content)
+                End If
+                strw1.Close()
             Else
-                strw1.Write(Content)
+                D.ErMsg(Me, "Error 75")
             End If
-            strw1.Close()
         End Sub
         'Writes to log file (implicit)
         Public Sub WriteToLog(Content As String, Optional DoubleSpacePadding As Boolean = False)
@@ -91,7 +91,6 @@ Namespace Common
             Else
 
                 D.ErMsg(Me, "File path (" + Path + ") is invalid.", "03")
-                temp.Show(Me.ToString, "my.settings.logpath=" + Path, "validpath()=" + ValidPath(Path).ToString)
             End If
         End Sub
         'Returns True if input path is valid
@@ -107,7 +106,6 @@ Namespace Common
         Public Function GetDesktop() As String
             GetDesktop = My.Computer.FileSystem.SpecialDirectories.Desktop.ToString
             Return GetDesktop
-            temp.Show("Desktop:", GetDesktop)
         End Function
         'Erases all log files (implicit)
         Public Sub EraseAllLogs()
@@ -148,14 +146,14 @@ Namespace Common
             MsgBox("-ERROR- " + Content + _l + "Sender: " + Sender.ToString + ".vb" + _l + "Error code: " + Reference + _l)
         End Sub
     End Class
+
 End Namespace
 
 Namespace Control
 
     Public Module Telescope
-        Private NL As String = Environment.NewLine
+        Private _l As String = Environment.NewLine
         Private temp As New _temp._disp
-        Private D As New Common.DebugManager
 
         Public Class T41
             Public Sub Move(XAmount As Double, YAmount As Double)
@@ -175,7 +173,6 @@ Namespace Control
     Public Module Other
         Private NL As String = Environment.NewLine
         Private temp As New _temp._disp
-        Private D As New Common.DebugManager
 
         Public Class Remote
 
@@ -200,7 +197,7 @@ Namespace Control
                     Case "remote_left"
                     Case "remote_select"
                     Case Else
-                        D.ErMsg(Me, "Button invalid, check MasterFunctions.vb to make sure each case is valid.", "04")
+                        MsgBox("ERROR")
                         Exit Sub
                 End Select
             End Sub

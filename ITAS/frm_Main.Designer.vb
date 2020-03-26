@@ -27,14 +27,14 @@ Partial Class frm_main
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.FileToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.OpenUserLogToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SaveSessionToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.LogoutToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ExitToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.NightModeOffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SyncToToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SwitchTelescopeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.ViewToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.NightModeOffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TheSkyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GoogleEarthToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -127,7 +127,6 @@ Partial Class frm_main
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
-        Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel_center.SuspendLayout()
         Me.group_remote.SuspendLayout()
@@ -146,7 +145,7 @@ Partial Class frm_main
         Me.MenuStrip1.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.MenuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom
         Me.MenuStrip1.Font = New System.Drawing.Font("Segoe UI", 10.0!)
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.EditToolStripMenuItem, Me.ViewToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem, Me.DEBUGToolstripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.FileToolStripMenuItem, Me.ViewToolStripMenuItem, Me.EditToolStripMenuItem, Me.ToolsToolStripMenuItem, Me.HelpToolStripMenuItem, Me.DEBUGToolstripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1184, 27)
@@ -156,7 +155,7 @@ Partial Class frm_main
         'FileToolStripMenuItem
         '
         Me.FileToolStripMenuItem.BackColor = System.Drawing.Color.Transparent
-        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenUserLogToolStripMenuItem, Me.SaveSessionToolStripMenuItem, Me.LogoutToolStripMenuItem, Me.ExitToolStripMenuItem})
+        Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenUserLogToolStripMenuItem, Me.LogoutToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(41, 23)
@@ -168,23 +167,32 @@ Partial Class frm_main
         Me.OpenUserLogToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.OpenUserLogToolStripMenuItem.Text = "Open User Log"
         '
-        'SaveSessionToolStripMenuItem
-        '
-        Me.SaveSessionToolStripMenuItem.Name = "SaveSessionToolStripMenuItem"
-        Me.SaveSessionToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
-        Me.SaveSessionToolStripMenuItem.Text = "Save Preferences"
-        '
         'LogoutToolStripMenuItem
         '
         Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
         Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
-        Me.LogoutToolStripMenuItem.Text = "Logout"
+        Me.LogoutToolStripMenuItem.Text = "Switch User"
         '
         'ExitToolStripMenuItem
         '
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.ExitToolStripMenuItem.Text = "Exit"
+        '
+        'ViewToolStripMenuItem
+        '
+        Me.ViewToolStripMenuItem.BackColor = System.Drawing.Color.Transparent
+        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NightModeOffToolStripMenuItem})
+        Me.ViewToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
+        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
+        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(50, 23)
+        Me.ViewToolStripMenuItem.Text = "View"
+        '
+        'NightModeOffToolStripMenuItem
+        '
+        Me.NightModeOffToolStripMenuItem.Name = "NightModeOffToolStripMenuItem"
+        Me.NightModeOffToolStripMenuItem.Size = New System.Drawing.Size(200, 24)
+        Me.NightModeOffToolStripMenuItem.Text = "Disable Night Mode"
         '
         'EditToolStripMenuItem
         '
@@ -207,20 +215,11 @@ Partial Class frm_main
         Me.SwitchTelescopeToolStripMenuItem.Size = New System.Drawing.Size(221, 24)
         Me.SwitchTelescopeToolStripMenuItem.Text = "Switch to 18"" Telescope"
         '
-        'ViewToolStripMenuItem
+        'PreferencesToolStripMenuItem
         '
-        Me.ViewToolStripMenuItem.BackColor = System.Drawing.Color.Transparent
-        Me.ViewToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.NightModeOffToolStripMenuItem})
-        Me.ViewToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
-        Me.ViewToolStripMenuItem.Name = "ViewToolStripMenuItem"
-        Me.ViewToolStripMenuItem.Size = New System.Drawing.Size(50, 23)
-        Me.ViewToolStripMenuItem.Text = "View"
-        '
-        'NightModeOffToolStripMenuItem
-        '
-        Me.NightModeOffToolStripMenuItem.Name = "NightModeOffToolStripMenuItem"
-        Me.NightModeOffToolStripMenuItem.Size = New System.Drawing.Size(200, 24)
-        Me.NightModeOffToolStripMenuItem.Text = "Disable Night Mode"
+        Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
+        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(221, 24)
+        Me.PreferencesToolStripMenuItem.Text = "Preferences..."
         '
         'ToolsToolStripMenuItem
         '
@@ -234,13 +233,13 @@ Partial Class frm_main
         'TheSkyToolStripMenuItem
         '
         Me.TheSkyToolStripMenuItem.Name = "TheSkyToolStripMenuItem"
-        Me.TheSkyToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.TheSkyToolStripMenuItem.Size = New System.Drawing.Size(158, 24)
         Me.TheSkyToolStripMenuItem.Text = "TheSky"
         '
         'GoogleEarthToolStripMenuItem
         '
         Me.GoogleEarthToolStripMenuItem.Name = "GoogleEarthToolStripMenuItem"
-        Me.GoogleEarthToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.GoogleEarthToolStripMenuItem.Size = New System.Drawing.Size(158, 24)
         Me.GoogleEarthToolStripMenuItem.Text = "Google Earth"
         '
         'HelpToolStripMenuItem
@@ -1496,12 +1495,6 @@ Partial Class frm_main
         Me.ToolTip1.BackColor = System.Drawing.SystemColors.InfoText
         Me.ToolTip1.ForeColor = System.Drawing.Color.DarkRed
         '
-        'PreferencesToolStripMenuItem
-        '
-        Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
-        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(221, 24)
-        Me.PreferencesToolStripMenuItem.Text = "Preferences..."
-        '
         'frm_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -1541,7 +1534,6 @@ Partial Class frm_main
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents FileToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents OpenUserLogToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SaveSessionToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem

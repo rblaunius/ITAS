@@ -778,3 +778,22 @@ New Session: 3/5/2020--41" Telescope
 
 ~Logged Out~3/6/2020~12:00 AM
 
+Open User Log
+  ~Logged Out @ 12:00 AM
+
+Open User Log
+  ~Logged Out @ 12:00 AM
+
+
+  ~Logged Out @ 12:00 AM
+
+Open Guest's Log File
+  ~Logged Out @ 12:00 AM
+
+Log File For:LKJ
+Created 3/26/2020 @ 12:00 AM
+
+  ~Logged Out @ 12:00 AM
+
+Log File For:RDF
+Created 3/26/2020 @ 12:00 AM

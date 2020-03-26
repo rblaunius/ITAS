@@ -12,11 +12,7 @@
     End Sub
 
     Private Sub btn_refresh_Click(sender As Object, e As EventArgs) Handles btn_refresh.Click
-        'Me.Refresh()
-    End Sub
-
-    Private Sub frm_debug_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-
+        Me.Refresh()
     End Sub
 
 End Class

@@ -2,6 +2,7 @@
 Imports System
 Imports System.IO
 Imports ITAS.Common
+Imports ITAS.frm_debug
 
 
 Public Class frm_main
@@ -34,12 +35,19 @@ Public Class frm_main
         LockedLocation = Point.Add(Origin, New Drawing.Size(0, group_currentobject.Height + group_telescope.Height + 10))
         panel_buttons.Location = Point.Add(Origin, New Size(6, 238))
         group_remote.Location = LockedLocation
+        If UserInitials = "" Then
+            OpenUserLogToolStripMenuItem.Text = "Open Guest's Log File"
+        Else
+            OpenUserLogToolStripMenuItem.Text = "Open " + UserInitials + "'s Log File"
+        End If
         Me.KeyPreview = True
     End Sub
 
     'Retrieve all variables either from frm_startup or My.Settings
     Public Sub RetrieveVariables()
-        'if startup form was opened () then
+        'if startup form was opened () then get variables
+        UserInitials = My.Settings.User
+        frm_debug.DebugALPHA(UserInitials)
 
 
     End Sub
@@ -51,14 +59,8 @@ Public Class frm_main
     'opens user_log.txt - this file stores every event/command
     Private Sub OpenUserLogToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles OpenUserLogToolStripMenuItem.Click
         F.WriteToFile(frm_Startup.LogPath, sender.ToString)
-        Process.Start(LogPath)
-    End Sub
-
-    Private Sub SaveSessionToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles SaveSessionToolStripMenuItem.Click
-        F.WriteToFile(LogPath, sender.ToString)
-        'some code to save contents? might delete...
-        SaveFileDialog1.FileName = UserInitials + "_save"
-        SaveFileDialog1.ShowDialog()
+        Dim pathname As String = frm_Startup.LogPath
+        Process.Start(pathname)
     End Sub
 
     Private Sub LogoutToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles LogoutToolStripMenuItem.Click
@@ -277,9 +279,6 @@ Public Class frm_main
         frm_debug.btn_refresh.PerformClick()
     End Sub
 
-    Private Sub Label23_Click(sender As Object, e As EventArgs)
-        frm_remotesetup.Show()
-    End Sub
 
 #End Region
 
