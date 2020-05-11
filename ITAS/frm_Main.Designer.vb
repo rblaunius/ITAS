@@ -33,18 +33,17 @@ Partial Class frm_main
         Me.NightModeOffToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EditToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SyncToToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SwitchTelescopeToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PreferencesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ToolsToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.TheSkyToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GoogleEarthToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HelpToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DocumentationToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.SetupRemoteToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DEBUGToolstripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Panel1 = New System.Windows.Forms.Panel()
         Me.Panel_center = New System.Windows.Forms.Panel()
         Me.group_remote = New System.Windows.Forms.GroupBox()
+        Me.btn_remoterefresh = New System.Windows.Forms.Button()
         Me.lbl_remotestatustitle = New System.Windows.Forms.Label()
         Me.lbl_remotestatus = New System.Windows.Forms.Label()
         Me.remotepanel = New System.Windows.Forms.Panel()
@@ -57,6 +56,10 @@ Partial Class frm_main
         Me.btnremote2 = New System.Windows.Forms.Button()
         Me.btnremote1 = New System.Windows.Forms.Button()
         Me.group_nextobject = New System.Windows.Forms.GroupBox()
+        Me.btn_search = New System.Windows.Forms.Button()
+        Me.btn_resetdata = New System.Windows.Forms.Button()
+        Me.Label23 = New System.Windows.Forms.Label()
+        Me.searchbar = New System.Windows.Forms.TextBox()
         Me.Panel2 = New System.Windows.Forms.Panel()
         Me.Label22 = New System.Windows.Forms.Label()
         Me.Label10 = New System.Windows.Forms.Label()
@@ -94,12 +97,10 @@ Partial Class frm_main
         Me.btn_SlewTo = New System.Windows.Forms.Button()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tab_brightstars = New System.Windows.Forms.TabPage()
+        Me.grid1 = New System.Windows.Forms.DataGridView()
         Me.tab_variablestars = New System.Windows.Forms.TabPage()
         Me.tab_othertargets = New System.Windows.Forms.TabPage()
         Me.tab_deepsky = New System.Windows.Forms.TabPage()
-        Me.btn_sortRAscension = New System.Windows.Forms.Button()
-        Me.btn_sortalphabet = New System.Windows.Forms.Button()
-        Me.btn_movetime = New System.Windows.Forms.Button()
         Me.group_currentobject = New System.Windows.Forms.GroupBox()
         Me.current_LST_lbl = New System.Windows.Forms.Label()
         Me.current_UT_lbl = New System.Windows.Forms.Label()
@@ -127,6 +128,7 @@ Partial Class frm_main
         Me.SaveFileDialog1 = New System.Windows.Forms.SaveFileDialog()
         Me.SerialPort1 = New System.IO.Ports.SerialPort(Me.components)
         Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.GitHubToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         Me.Panel_center.SuspendLayout()
         Me.group_remote.SuspendLayout()
@@ -135,6 +137,8 @@ Partial Class frm_main
         Me.Panel2.SuspendLayout()
         Me.panel_buttons.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.tab_brightstars.SuspendLayout()
+        CType(Me.grid1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.group_currentobject.SuspendLayout()
         Me.group_telescope.SuspendLayout()
         CType(Me.updown_frequency, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -157,24 +161,31 @@ Partial Class frm_main
         Me.FileToolStripMenuItem.BackColor = System.Drawing.Color.Transparent
         Me.FileToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.OpenUserLogToolStripMenuItem, Me.LogoutToolStripMenuItem, Me.ExitToolStripMenuItem})
         Me.FileToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
+        Me.FileToolStripMenuItem.ImageTransparentColor = System.Drawing.Color.Black
         Me.FileToolStripMenuItem.Name = "FileToolStripMenuItem"
         Me.FileToolStripMenuItem.Size = New System.Drawing.Size(41, 23)
         Me.FileToolStripMenuItem.Text = "File"
         '
         'OpenUserLogToolStripMenuItem
         '
+        Me.OpenUserLogToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.OpenUserLogToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.OpenUserLogToolStripMenuItem.Name = "OpenUserLogToolStripMenuItem"
         Me.OpenUserLogToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.OpenUserLogToolStripMenuItem.Text = "Open User Log"
         '
         'LogoutToolStripMenuItem
         '
+        Me.LogoutToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.LogoutToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.LogoutToolStripMenuItem.Name = "LogoutToolStripMenuItem"
         Me.LogoutToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.LogoutToolStripMenuItem.Text = "Switch User"
         '
         'ExitToolStripMenuItem
         '
+        Me.ExitToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.ExitToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.ExitToolStripMenuItem.Name = "ExitToolStripMenuItem"
         Me.ExitToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.ExitToolStripMenuItem.Text = "Exit"
@@ -190,6 +201,8 @@ Partial Class frm_main
         '
         'NightModeOffToolStripMenuItem
         '
+        Me.NightModeOffToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.NightModeOffToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.NightModeOffToolStripMenuItem.Name = "NightModeOffToolStripMenuItem"
         Me.NightModeOffToolStripMenuItem.Size = New System.Drawing.Size(200, 24)
         Me.NightModeOffToolStripMenuItem.Text = "Disable Night Mode"
@@ -197,7 +210,7 @@ Partial Class frm_main
         'EditToolStripMenuItem
         '
         Me.EditToolStripMenuItem.BackColor = System.Drawing.Color.Transparent
-        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SyncToToolStripMenuItem, Me.SwitchTelescopeToolStripMenuItem, Me.PreferencesToolStripMenuItem})
+        Me.EditToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.SyncToToolStripMenuItem, Me.PreferencesToolStripMenuItem})
         Me.EditToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.EditToolStripMenuItem.Name = "EditToolStripMenuItem"
         Me.EditToolStripMenuItem.Size = New System.Drawing.Size(44, 23)
@@ -205,20 +218,18 @@ Partial Class frm_main
         '
         'SyncToToolStripMenuItem
         '
+        Me.SyncToToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.SyncToToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.SyncToToolStripMenuItem.Name = "SyncToToolStripMenuItem"
-        Me.SyncToToolStripMenuItem.Size = New System.Drawing.Size(221, 24)
+        Me.SyncToToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.SyncToToolStripMenuItem.Text = "Sync To..."
-        '
-        'SwitchTelescopeToolStripMenuItem
-        '
-        Me.SwitchTelescopeToolStripMenuItem.Name = "SwitchTelescopeToolStripMenuItem"
-        Me.SwitchTelescopeToolStripMenuItem.Size = New System.Drawing.Size(221, 24)
-        Me.SwitchTelescopeToolStripMenuItem.Text = "Switch to 18"" Telescope"
         '
         'PreferencesToolStripMenuItem
         '
+        Me.PreferencesToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.PreferencesToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.PreferencesToolStripMenuItem.Name = "PreferencesToolStripMenuItem"
-        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(221, 24)
+        Me.PreferencesToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.PreferencesToolStripMenuItem.Text = "Preferences..."
         '
         'ToolsToolStripMenuItem
@@ -232,19 +243,23 @@ Partial Class frm_main
         '
         'TheSkyToolStripMenuItem
         '
+        Me.TheSkyToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.TheSkyToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.TheSkyToolStripMenuItem.Name = "TheSkyToolStripMenuItem"
-        Me.TheSkyToolStripMenuItem.Size = New System.Drawing.Size(158, 24)
+        Me.TheSkyToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.TheSkyToolStripMenuItem.Text = "TheSky"
         '
         'GoogleEarthToolStripMenuItem
         '
+        Me.GoogleEarthToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.GoogleEarthToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.GoogleEarthToolStripMenuItem.Name = "GoogleEarthToolStripMenuItem"
-        Me.GoogleEarthToolStripMenuItem.Size = New System.Drawing.Size(158, 24)
+        Me.GoogleEarthToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
         Me.GoogleEarthToolStripMenuItem.Text = "Google Earth"
         '
         'HelpToolStripMenuItem
         '
-        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DocumentationToolStripMenuItem1, Me.SetupRemoteToolStripMenuItem})
+        Me.HelpToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.DocumentationToolStripMenuItem1, Me.GitHubToolStripMenuItem})
         Me.HelpToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
         Me.HelpToolStripMenuItem.Name = "HelpToolStripMenuItem"
         Me.HelpToolStripMenuItem.Size = New System.Drawing.Size(49, 23)
@@ -252,15 +267,11 @@ Partial Class frm_main
         '
         'DocumentationToolStripMenuItem1
         '
+        Me.DocumentationToolStripMenuItem1.BackColor = System.Drawing.Color.Black
+        Me.DocumentationToolStripMenuItem1.ForeColor = System.Drawing.Color.DarkRed
         Me.DocumentationToolStripMenuItem1.Name = "DocumentationToolStripMenuItem1"
-        Me.DocumentationToolStripMenuItem1.Size = New System.Drawing.Size(173, 24)
+        Me.DocumentationToolStripMenuItem1.Size = New System.Drawing.Size(180, 24)
         Me.DocumentationToolStripMenuItem1.Text = "Documentation"
-        '
-        'SetupRemoteToolStripMenuItem
-        '
-        Me.SetupRemoteToolStripMenuItem.Name = "SetupRemoteToolStripMenuItem"
-        Me.SetupRemoteToolStripMenuItem.Size = New System.Drawing.Size(173, 24)
-        Me.SetupRemoteToolStripMenuItem.Text = "Setup Remote"
         '
         'DEBUGToolstripMenuItem
         '
@@ -296,6 +307,7 @@ Partial Class frm_main
         '
         Me.group_remote.Anchor = CType((System.Windows.Forms.AnchorStyles.Bottom Or System.Windows.Forms.AnchorStyles.Left), System.Windows.Forms.AnchorStyles)
         Me.group_remote.BackColor = System.Drawing.Color.Transparent
+        Me.group_remote.Controls.Add(Me.btn_remoterefresh)
         Me.group_remote.Controls.Add(Me.lbl_remotestatustitle)
         Me.group_remote.Controls.Add(Me.lbl_remotestatus)
         Me.group_remote.Controls.Add(Me.remotepanel)
@@ -309,11 +321,30 @@ Partial Class frm_main
         Me.group_remote.Text = "REMOTE"
         Me.group_remote.UseCompatibleTextRendering = True
         '
+        'btn_remoterefresh
+        '
+        Me.btn_remoterefresh.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.btn_remoterefresh.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btn_remoterefresh.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
+        Me.btn_remoterefresh.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.btn_remoterefresh.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btn_remoterefresh.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btn_remoterefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_remoterefresh.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_remoterefresh.ForeColor = System.Drawing.Color.DarkRed
+        Me.btn_remoterefresh.Location = New System.Drawing.Point(172, 269)
+        Me.btn_remoterefresh.Name = "btn_remoterefresh"
+        Me.btn_remoterefresh.Size = New System.Drawing.Size(71, 25)
+        Me.btn_remoterefresh.TabIndex = 28
+        Me.btn_remoterefresh.Text = "Refresh"
+        Me.btn_remoterefresh.UseCompatibleTextRendering = True
+        Me.btn_remoterefresh.UseVisualStyleBackColor = False
+        '
         'lbl_remotestatustitle
         '
         Me.lbl_remotestatustitle.AutoSize = True
         Me.lbl_remotestatustitle.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_remotestatustitle.Location = New System.Drawing.Point(46, 268)
+        Me.lbl_remotestatustitle.Location = New System.Drawing.Point(3, 271)
         Me.lbl_remotestatustitle.Name = "lbl_remotestatustitle"
         Me.lbl_remotestatustitle.Size = New System.Drawing.Size(55, 21)
         Me.lbl_remotestatustitle.TabIndex = 2
@@ -324,11 +355,11 @@ Partial Class frm_main
         '
         Me.lbl_remotestatus.AutoSize = True
         Me.lbl_remotestatus.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.lbl_remotestatus.Location = New System.Drawing.Point(102, 268)
+        Me.lbl_remotestatus.Location = New System.Drawing.Point(52, 271)
         Me.lbl_remotestatus.Name = "lbl_remotestatus"
-        Me.lbl_remotestatus.Size = New System.Drawing.Size(103, 21)
+        Me.lbl_remotestatus.Size = New System.Drawing.Size(114, 21)
         Me.lbl_remotestatus.TabIndex = 1
-        Me.lbl_remotestatus.Text = "Disconnected"
+        Me.lbl_remotestatus.Text = "Not Connected"
         '
         'remotepanel
         '
@@ -486,12 +517,13 @@ Partial Class frm_main
         'group_nextobject
         '
         Me.group_nextobject.BackColor = System.Drawing.Color.Transparent
+        Me.group_nextobject.Controls.Add(Me.btn_search)
+        Me.group_nextobject.Controls.Add(Me.btn_resetdata)
+        Me.group_nextobject.Controls.Add(Me.Label23)
+        Me.group_nextobject.Controls.Add(Me.searchbar)
         Me.group_nextobject.Controls.Add(Me.Panel2)
         Me.group_nextobject.Controls.Add(Me.panel_buttons)
         Me.group_nextobject.Controls.Add(Me.TabControl1)
-        Me.group_nextobject.Controls.Add(Me.btn_sortRAscension)
-        Me.group_nextobject.Controls.Add(Me.btn_sortalphabet)
-        Me.group_nextobject.Controls.Add(Me.btn_movetime)
         Me.group_nextobject.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.group_nextobject.ForeColor = System.Drawing.Color.DarkRed
         Me.group_nextobject.Location = New System.Drawing.Point(255, 3)
@@ -501,6 +533,67 @@ Partial Class frm_main
         Me.group_nextobject.TabIndex = 1
         Me.group_nextobject.TabStop = False
         Me.group_nextobject.Text = "NEXT OBJECT"
+        '
+        'btn_search
+        '
+        Me.btn_search.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.btn_search.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btn_search.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
+        Me.btn_search.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.btn_search.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btn_search.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btn_search.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_search.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_search.ForeColor = System.Drawing.Color.DarkRed
+        Me.btn_search.Location = New System.Drawing.Point(702, 17)
+        Me.btn_search.Name = "btn_search"
+        Me.btn_search.Size = New System.Drawing.Size(116, 30)
+        Me.btn_search.TabIndex = 48
+        Me.btn_search.Text = "Search"
+        Me.btn_search.UseCompatibleTextRendering = True
+        Me.btn_search.UseVisualStyleBackColor = False
+        '
+        'btn_resetdata
+        '
+        Me.btn_resetdata.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
+        Me.btn_resetdata.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.btn_resetdata.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
+        Me.btn_resetdata.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
+        Me.btn_resetdata.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
+        Me.btn_resetdata.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
+        Me.btn_resetdata.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btn_resetdata.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btn_resetdata.ForeColor = System.Drawing.Color.DarkRed
+        Me.btn_resetdata.Location = New System.Drawing.Point(824, 17)
+        Me.btn_resetdata.Name = "btn_resetdata"
+        Me.btn_resetdata.Size = New System.Drawing.Size(89, 30)
+        Me.btn_resetdata.TabIndex = 29
+        Me.btn_resetdata.Text = "Reset"
+        Me.btn_resetdata.UseCompatibleTextRendering = True
+        Me.btn_resetdata.UseVisualStyleBackColor = False
+        '
+        'Label23
+        '
+        Me.Label23.AutoSize = True
+        Me.Label23.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label23.ForeColor = System.Drawing.Color.DarkRed
+        Me.Label23.Location = New System.Drawing.Point(289, 21)
+        Me.Label23.Name = "Label23"
+        Me.Label23.Size = New System.Drawing.Size(127, 21)
+        Me.Label23.TabIndex = 47
+        Me.Label23.Text = "Search by Name:"
+        Me.Label23.TextAlign = System.Drawing.ContentAlignment.MiddleRight
+        '
+        'searchbar
+        '
+        Me.searchbar.BackColor = System.Drawing.Color.DarkRed
+        Me.searchbar.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.searchbar.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.searchbar.ForeColor = System.Drawing.Color.Black
+        Me.searchbar.Location = New System.Drawing.Point(421, 18)
+        Me.searchbar.Name = "searchbar"
+        Me.searchbar.Size = New System.Drawing.Size(275, 29)
+        Me.searchbar.TabIndex = 47
         '
         'Panel2
         '
@@ -1014,7 +1107,6 @@ Partial Class frm_main
         Me.btn_SlewTo.Anchor = System.Windows.Forms.AnchorStyles.Top
         Me.btn_SlewTo.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
         Me.btn_SlewTo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btn_SlewTo.Enabled = False
         Me.btn_SlewTo.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
         Me.btn_SlewTo.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
         Me.btn_SlewTo.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
@@ -1053,6 +1145,7 @@ Partial Class frm_main
         '
         Me.tab_brightstars.BackColor = System.Drawing.Color.Black
         Me.tab_brightstars.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None
+        Me.tab_brightstars.Controls.Add(Me.grid1)
         Me.tab_brightstars.ForeColor = System.Drawing.Color.DarkRed
         Me.tab_brightstars.Location = New System.Drawing.Point(4, 36)
         Me.tab_brightstars.Name = "tab_brightstars"
@@ -1060,6 +1153,25 @@ Partial Class frm_main
         Me.tab_brightstars.Size = New System.Drawing.Size(630, 576)
         Me.tab_brightstars.TabIndex = 0
         Me.tab_brightstars.Text = "Bright Stars"
+        '
+        'grid1
+        '
+        Me.grid1.AllowUserToAddRows = False
+        Me.grid1.AllowUserToDeleteRows = False
+        Me.grid1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells
+        Me.grid1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
+        Me.grid1.BackgroundColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.grid1.BorderStyle = System.Windows.Forms.BorderStyle.None
+        Me.grid1.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.Sunken
+        Me.grid1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.grid1.GridColor = System.Drawing.Color.Black
+        Me.grid1.Location = New System.Drawing.Point(6, 6)
+        Me.grid1.MultiSelect = False
+        Me.grid1.Name = "grid1"
+        Me.grid1.ReadOnly = True
+        Me.grid1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect
+        Me.grid1.Size = New System.Drawing.Size(621, 564)
+        Me.grid1.TabIndex = 0
         '
         'tab_variablestars
         '
@@ -1096,63 +1208,6 @@ Partial Class frm_main
         Me.tab_deepsky.Size = New System.Drawing.Size(630, 576)
         Me.tab_deepsky.TabIndex = 3
         Me.tab_deepsky.Text = "Deep Sky"
-        '
-        'btn_sortRAscension
-        '
-        Me.btn_sortRAscension.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
-        Me.btn_sortRAscension.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btn_sortRAscension.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
-        Me.btn_sortRAscension.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.btn_sortRAscension.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btn_sortRAscension.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btn_sortRAscension.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_sortRAscension.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_sortRAscension.ForeColor = System.Drawing.Color.DarkRed
-        Me.btn_sortRAscension.Location = New System.Drawing.Point(648, 17)
-        Me.btn_sortRAscension.Name = "btn_sortRAscension"
-        Me.btn_sortRAscension.Size = New System.Drawing.Size(175, 33)
-        Me.btn_sortRAscension.TabIndex = 26
-        Me.btn_sortRAscension.Text = "Right Ascension Sort"
-        Me.btn_sortRAscension.UseCompatibleTextRendering = True
-        Me.btn_sortRAscension.UseVisualStyleBackColor = False
-        '
-        'btn_sortalphabet
-        '
-        Me.btn_sortalphabet.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
-        Me.btn_sortalphabet.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btn_sortalphabet.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
-        Me.btn_sortalphabet.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.btn_sortalphabet.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btn_sortalphabet.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btn_sortalphabet.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_sortalphabet.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_sortalphabet.ForeColor = System.Drawing.Color.DarkRed
-        Me.btn_sortalphabet.Location = New System.Drawing.Point(467, 17)
-        Me.btn_sortalphabet.Name = "btn_sortalphabet"
-        Me.btn_sortalphabet.Size = New System.Drawing.Size(175, 33)
-        Me.btn_sortalphabet.TabIndex = 25
-        Me.btn_sortalphabet.Text = "Alphabetic Sort"
-        Me.btn_sortalphabet.UseCompatibleTextRendering = True
-        Me.btn_sortalphabet.UseVisualStyleBackColor = False
-        '
-        'btn_movetime
-        '
-        Me.btn_movetime.BackColor = System.Drawing.Color.FromArgb(CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer), CType(CType(15, Byte), Integer))
-        Me.btn_movetime.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
-        Me.btn_movetime.FlatAppearance.BorderColor = System.Drawing.Color.DarkRed
-        Me.btn_movetime.FlatAppearance.CheckedBackColor = System.Drawing.SystemColors.ActiveBorder
-        Me.btn_movetime.FlatAppearance.MouseDownBackColor = System.Drawing.Color.DimGray
-        Me.btn_movetime.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(CType(CType(64, Byte), Integer), CType(CType(0, Byte), Integer), CType(CType(0, Byte), Integer))
-        Me.btn_movetime.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.btn_movetime.Font = New System.Drawing.Font("Segoe UI", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btn_movetime.ForeColor = System.Drawing.Color.DarkRed
-        Me.btn_movetime.Location = New System.Drawing.Point(286, 17)
-        Me.btn_movetime.Name = "btn_movetime"
-        Me.btn_movetime.Size = New System.Drawing.Size(175, 33)
-        Me.btn_movetime.TabIndex = 24
-        Me.btn_movetime.Text = "Move Time Sort"
-        Me.btn_movetime.UseCompatibleTextRendering = True
-        Me.btn_movetime.UseVisualStyleBackColor = False
         '
         'group_currentobject
         '
@@ -1495,6 +1550,14 @@ Partial Class frm_main
         Me.ToolTip1.BackColor = System.Drawing.SystemColors.InfoText
         Me.ToolTip1.ForeColor = System.Drawing.Color.DarkRed
         '
+        'GitHubToolStripMenuItem
+        '
+        Me.GitHubToolStripMenuItem.BackColor = System.Drawing.Color.Black
+        Me.GitHubToolStripMenuItem.ForeColor = System.Drawing.Color.DarkRed
+        Me.GitHubToolStripMenuItem.Name = "GitHubToolStripMenuItem"
+        Me.GitHubToolStripMenuItem.Size = New System.Drawing.Size(180, 24)
+        Me.GitHubToolStripMenuItem.Text = "GitHub"
+        '
         'frm_main
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(96.0!, 96.0!)
@@ -1518,10 +1581,13 @@ Partial Class frm_main
         Me.group_remote.PerformLayout()
         Me.remotepanel.ResumeLayout(False)
         Me.group_nextobject.ResumeLayout(False)
+        Me.group_nextobject.PerformLayout()
         Me.Panel2.ResumeLayout(False)
         Me.Panel2.PerformLayout()
         Me.panel_buttons.ResumeLayout(False)
         Me.TabControl1.ResumeLayout(False)
+        Me.tab_brightstars.ResumeLayout(False)
+        CType(Me.grid1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.group_currentobject.ResumeLayout(False)
         Me.group_currentobject.PerformLayout()
         Me.group_telescope.ResumeLayout(False)
@@ -1537,7 +1603,6 @@ Partial Class frm_main
     Friend WithEvents ExitToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents EditToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ViewToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents SwitchTelescopeToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents SyncToToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents ToolsToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents TheSkyToolStripMenuItem As ToolStripMenuItem
@@ -1547,9 +1612,6 @@ Partial Class frm_main
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Panel_center As Panel
     Friend WithEvents group_nextobject As GroupBox
-    Friend WithEvents btn_sortRAscension As Button
-    Friend WithEvents btn_sortalphabet As Button
-    Friend WithEvents btn_movetime As Button
     Friend WithEvents btn_survey As Button
     Friend WithEvents btn_movetonext As Button
     Friend WithEvents btn_linkTheSky As Button
@@ -1632,6 +1694,12 @@ Partial Class frm_main
     Friend WithEvents ToolTip1 As ToolTip
     Friend WithEvents lbl_remotestatustitle As Label
     Friend WithEvents lbl_remotestatus As Label
-    Friend WithEvents SetupRemoteToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PreferencesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents grid1 As DataGridView
+    Friend WithEvents btn_remoterefresh As Button
+    Friend WithEvents Label23 As Label
+    Friend WithEvents searchbar As TextBox
+    Friend WithEvents btn_resetdata As Button
+    Friend WithEvents btn_search As Button
+    Friend WithEvents GitHubToolStripMenuItem As ToolStripMenuItem
 End Class

@@ -1,28 +1,39 @@
 ﻿Imports System
 Imports System.IO
-Imports ITAS.frm_debug
 Imports ITAS.Control 'In MasterFunctions.vb
 Imports ITAS.Common 'In MasterFunctions.vb
 
 Public Class frm_Startup
 
-    'Declare Shortcuts to Objects
-    Private F As New FileManager
+    'Variables for Objects
+    Private F As New FileManager  'from MasterFunctions.vb
     Public UserInitials As String = ""
     Public ParentFolder As String = My.Computer.FileSystem.CurrentDirectory()
     Public LogFolder As String = ParentFolder + "\User Logs\"
     Public LogPath As String
+    Public tele As String
 
-#Region "On Load"
+#Region "Load"
 
     'runs as form begins loading
     Private Sub frm_Startup_Load(sender As Object, e As EventArgs) Handles Me.Load
-        If My.Computer.FileSystem.DirectoryExists(LogFolder) = False Then
-            My.Computer.FileSystem.CreateDirectory(LogFolder)
+        If My.Settings.OpenStartupWindow = False Then
+            UserInitials = My.Settings.User
+            LogPath = My.Settings.LogPath
+            tele = My.Settings.Telescope
+            Me.Hide()
+            Me.Enabled() = False
+            frm_main.Show()
+            Me.Close()
+            Exit Sub
+        Else
+            If My.Computer.FileSystem.DirectoryExists(LogFolder) = False Then
+                My.Computer.FileSystem.CreateDirectory(LogFolder)
+            End If
+            Me.KeyPreview = True
+            tb_initials.Text = My.Settings.User
+            tb_initials.Select()
         End If
-        Me.KeyPreview = True
-        tb_initials.Text = My.Settings.User
-        tb_initials.Select()
     End Sub
 
     'Keyboard Shortcuts
@@ -36,6 +47,7 @@ Public Class frm_Startup
 
 
 #Region "Controls"
+
     'Continue Button: closes startup form and opens main form
     Private Sub btn_continue_Click(sender As Object, e As EventArgs) Handles btn_continue.Click
         If UserInitials = "" Then 'if user did not enter any initials
@@ -44,6 +56,8 @@ Public Class frm_Startup
         LogPath = F.GetUserLogPath(UserInitials, LogFolder)  'returns log path defined by user initials
         My.Settings.LogPath = LogPath 'saves logpath to application settings, incase user wants to skip menu
         My.Settings.User = UserInitials
+        tele = My.Settings.Telescope
+
         frm_main.Show()
         Me.Hide()
         Me.Enabled() = False

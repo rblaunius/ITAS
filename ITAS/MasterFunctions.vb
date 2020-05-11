@@ -1,23 +1,22 @@
 ﻿
-'    Creators: Barrett Launius, (Original created by Dr. Dan Bruton: astro@sfasu.edu in VB6)
+' Description: This file contains every general function/sub for ITAS. Each form calls upon the following namespaces in some way.
+
 '  Start Date: 02/01/2020 
-'   Framework: VB.NET 4.7
-'       Email: launiusrb@jacks.sfasu.edu
-'
-' Description: This file contains every general function/sub for ITAS. 
-'              Each form calls upon this file in some way.
+'  Last Updated: 05/04/2020
+'  Framework: VB.NET 4.7
+'  Email: launiusrb@jacks.sfasu.edu // rblaunius@gmail.com
 
 Imports System
 Imports System.IO
 
 Namespace Common
 
-    Public Class FileManager
+    Public Class FileManager  'Class containing all functions/subs relating to creating, 
 
         Private NL As String = Environment.NewLine
         Private D As New DebugManager
 
-        'Returns log file path as string (implicit)
+        'Returns path/directory for log file, or creates a new one if the User is new
         Public Function GetUserLogPath(Initials As String, ParentPath As String) As String
             GetUserLogPath = ""
             If Directory.Exists(ParentPath) = False Then
@@ -44,9 +43,9 @@ Namespace Common
                     Return GetUserLogPath
                 End If
             End If
-
         End Function
-        'Creates any file 
+
+        'Creates any file given a valid input
         Public Sub CreateBlankFile(FullPath As String)
             If File.Exists(FullPath) = False Then
                 Dim strw As StreamWriter
@@ -57,11 +56,12 @@ Namespace Common
                 D.ErMsg(Me, "The File (" + FullPath + ") does not exist.", "01")
             End If
         End Sub
+
         'Writes to any txt file
         Public Sub WriteToFile(PathName As String, Content As String, Optional DoubleSpacePadding As Boolean = False)
             If Directory.Exists(PathName) Then
                 If PathName.Contains("txt") = False Then
-                    D.ErMsg(Me, "Cannot write to file (" + PathName + ") because path is either invalid or has invalid extension.", "02")
+                    D.ErMsg(Me, "Cannot write to file (" + PathName + ") because path is not a text file.", "02")
                     Exit Sub
                 End If
                 Dim strw1 As StreamWriter
@@ -73,13 +73,14 @@ Namespace Common
                 End If
                 strw1.Close()
             Else
-                D.ErMsg(Me, "Error 75")
+                D.ErMsg(Me, "Invalid path (" + PathName + ")", "03")
             End If
         End Sub
+
         'Writes to log file (implicit)
         Public Sub WriteToLog(Content As String, Optional DoubleSpacePadding As Boolean = False)
             Dim Path As String = My.Settings.LogPath
-            If ValidPath(Path) = True Then
+            If File.Exists(Path) Then
                 Dim strw2 As StreamWriter
                 strw2 = My.Computer.FileSystem.OpenTextFileWriter(Path, True)
                 If DoubleSpacePadding = True Then
@@ -89,27 +90,13 @@ Namespace Common
                 End If
                 strw2.Close()
             Else
-
-                D.ErMsg(Me, "File path (" + Path + ") is invalid.", "03")
+                D.ErMsg(Me, "Log path (" + Path + ") is invalid.", "04")
             End If
         End Sub
-        'Returns True if input path is valid
-        Public Function ValidPath(Path As String) As Boolean
-            If File.Exists(Path) Then
-                ValidPath = True
-            Else
-                ValidPath = False
-            End If
-            Return ValidPath
-        End Function
-        'Returns local Desktop directory as string (implicit)
-        Public Function GetDesktop() As String
-            GetDesktop = My.Computer.FileSystem.SpecialDirectories.Desktop.ToString
-            Return GetDesktop
-        End Function
+
         'Erases all log files (implicit)
         Public Sub EraseAllLogs()
-            If ValidPath(My.Settings.LogFolder) = False Then
+            If File.Exists(My.Settings.LogFolder) = False Then
                 MsgBox("No files were erased.")
                 Exit Sub
             Else
@@ -122,28 +109,15 @@ Namespace Common
                 MsgBox("Deleted " + totfiles + " log files.")
             End If
         End Sub
-        'creates a shortcut for the .exe??
-        Public Function CreateShortcut(ByVal TargetName As String, ByVal ShortCutPath As String, ByVal ShortCutName As String) As Nullable
-            Dim oShell As Object
-            Dim oLink As Object
-            Try
-                oShell = CreateObject("WScript.Shell")
-                oLink = oShell.CreateShortcut(ShortCutPath & "\" & ShortCutName & ".lnk")
-                oLink.TargetPath = TargetName
-                oLink.WindowStyle = 1
-                oLink.Save()
-            Catch ex As Exception
-            End Try
-            Return Nothing
-        End Function
-
     End Class
+
+
     Public Class DebugManager
-        'Writes and displays an error message to a msgbox
+        'Writes and displays an error message to a msgbox? Not sure if this is necessary
         Public Sub ErMsg(Sender As Object, Optional Content As String = "", Optional Reference As String = "NA")
             Dim style As MsgBoxStyle = New MsgBoxStyle = MsgBoxStyle.Critical
-            Dim _l As String = Environment.NewLine
-            MsgBox("-ERROR- " + Content + _l + "Sender: " + Sender.ToString + ".vb" + _l + "Error code: " + Reference + _l)
+            Dim NL As String = Environment.NewLine
+            MsgBox("-ERROR- " + Content + NL + "Sender: " + Sender.ToString + ".vb" + NL + "Error code: " + Reference + NL)
         End Sub
     End Class
 
@@ -151,10 +125,10 @@ End Namespace
 
 Namespace Control
 
-    Public Module Telescope
-        Private _l As String = Environment.NewLine
-        Private temp As New _temp._disp
+    Public Module Telescope 'Possible that this module can be in its own independent .vb file - Needs work
+        Private NL As String = Environment.NewLine
 
+        'Move 41" Telescope
         Public Class T41
             Public Sub Move(XAmount As Double, YAmount As Double)
             End Sub
@@ -162,6 +136,7 @@ Namespace Control
             End Sub
         End Class
 
+        'Move 18" Telescope
         Public Class T18
             Public Sub Move(ByVal XAmount As Double, ByVal YAmount As Double)
             End Sub
@@ -170,24 +145,33 @@ Namespace Control
         End Class
 
     End Module
-    Public Module Other
-        Private NL As String = Environment.NewLine
-        Private temp As New _temp._disp
 
-        Public Class Remote
+    Public Module Remote
+        Private NL As String = Environment.NewLine
+
+        Public Class Remote 'Controls everything relating to remote (will be called upon in main form when remote is connected?)
 
             'Returns True if the remote is connected
             Public Function IsConnected() As Boolean
+                '
+                'CODE TO CHECK IF USB REMOTE IS CONNECTED
+                '
                 Return IsConnected
-                temp.Show("IsConnected", IsConnected.ToString)
             End Function
+
+            Public Sub RemoteCommands()
+                '
+                'CODE THAT RELATES REMOTE CONTROLS WITH TELESCOPE
+                '
+            End Sub
+
             'Displays press-down effect on remote's graphic - indicates button was pressed
             Public Sub WhenRemotePressed_Visual(Remote_BtnName As String)
                 Remote_BtnName = Remote_BtnName.ToLower
                 Select Case Remote_BtnName 'the following cases are the (soon-to-be) declared names of the buttons on the remote (analog)
                     Case "remote_btn_a"
                         'code to execute WHEN user presses remote_btn_a
-                        'this code will not control telescope or control any buttons,
+                        'this code will not control telescope or any buttons...
                         'it will just display in real time on screen what's being pressed (and potentially could save to log file? idk)
                     Case "remote_btn_b"
                     Case "remote_btn_c"
@@ -197,7 +181,7 @@ Namespace Control
                     Case "remote_left"
                     Case "remote_select"
                     Case Else
-                        MsgBox("ERROR")
+                        MsgBox("See MasterFunctions.Control.Other.WhenRemotePressed_Visual")
                         Exit Sub
                 End Select
             End Sub

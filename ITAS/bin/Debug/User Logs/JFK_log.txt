@@ -1,8 +1,12 @@
-﻿Log File For:JFK
-Created 3/4/2020 @ 00:00:00
+﻿
+  ~Logged Out @ 12:00 AM
 
-New Session: 3/4/2020--41" Telescope
- > Switch Telescope
------------------------------------------------------------------------------
-New Session: 3/4/2020--41" Telescope
------------------------------------------------------------------------------
+
+  ~Logged Out @ 12:00 AM
+
+
+  ~Logged Out @ 12:00 AM
+
+
+  ~Logged Out @ 12:00 AM
+

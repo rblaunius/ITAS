@@ -10,5 +10,4 @@ H:\Developer\ITAS\ITAS\obj\Debug\ITAS.exe
 H:\Developer\ITAS\ITAS\obj\Debug\ITAS.xml
 H:\Developer\ITAS\ITAS\obj\Debug\ITAS.pdb
 H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_main.resources
-H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_debug.resources
 H:\Developer\ITAS\ITAS\obj\Debug\ITAS.frm_preferences.resources

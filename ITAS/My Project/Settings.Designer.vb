@@ -57,17 +57,18 @@ Namespace My
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
          Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
          Global.System.Configuration.DefaultSettingValueAttribute("")>  _
-        Public Property LastTelescope() As String
+        Public Property Telescope() As String
             Get
-                Return CType(Me("LastTelescope"),String)
+                Return CType(Me("Telescope"),String)
             End Get
             Set
-                Me("LastTelescope") = value
+                Me("Telescope") = value
             End Set
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property OpenStartupWindow() As Boolean
             Get
                 Return CType(Me("OpenStartupWindow"),Boolean)
@@ -90,7 +91,8 @@ Namespace My
         End Property
         
         <Global.System.Configuration.UserScopedSettingAttribute(),  _
-         Global.System.Diagnostics.DebuggerNonUserCodeAttribute()>  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("True")>  _
         Public Property StartDark() As Boolean
             Get
                 Return CType(Me("StartDark"),Boolean)
@@ -134,6 +136,87 @@ Namespace My
             Set
                 Me("LogFolder") = value
             End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property LastFilter() As String
+            Get
+                Return CType(Me("LastFilter"),String)
+            End Get
+            Set
+                Me("LastFilter") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("")>  _
+        Public Property LastObject() As String
+            Get
+                Return CType(Me("LastObject"),String)
+            End Get
+            Set
+                Me("LastObject") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TelescopeRA() As Long
+            Get
+                Return CType(Me("TelescopeRA"),Long)
+            End Get
+            Set
+                Me("TelescopeRA") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TelescopeDEC() As Long
+            Get
+                Return CType(Me("TelescopeDEC"),Long)
+            End Get
+            Set
+                Me("TelescopeDEC") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TelescopeAZ() As Long
+            Get
+                Return CType(Me("TelescopeAZ"),Long)
+            End Get
+            Set
+                Me("TelescopeAZ") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.UserScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public Property TelescopeALT() As Long
+            Get
+                Return CType(Me("TelescopeALT"),Long)
+            End Get
+            Set
+                Me("TelescopeALT") = value
+            End Set
+        End Property
+        
+        <Global.System.Configuration.ApplicationScopedSettingAttribute(),  _
+         Global.System.Diagnostics.DebuggerNonUserCodeAttribute(),  _
+         Global.System.Configuration.DefaultSettingValueAttribute("0")>  _
+        Public ReadOnly Property LastDomePosition() As Long
+            Get
+                Return CType(Me("LastDomePosition"),Long)
+            End Get
         End Property
     End Class
 End Namespace
