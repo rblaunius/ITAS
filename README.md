@@ -5,36 +5,44 @@ Barrett Launius
 Spring 2020 
  
 # I. Introduction
-This basis of this project was to update, re-design, and migrate an old version of SFA’s Telescope Software called ITAS (Integrated Telescope Automation System). It is used at the University’s observatory to track objects using one of two large telescopes. The original software was last updated in 2006 by Dr. Bruton and was written in VB6 – a framework that was discontinued about fifteen years ago. Under the guidance and supervision of Mr. Timmons, I was tasked with the challenge of converting the outdated software into a more modern application that is easier to use and modify by migrating from the VB6 programming language to the VBNET framework.
-Visual Basic 6 is very different than that of VBNET. There are some minor similarities in the syntax, but the main difference is that VB6 is an interpreter-based language and VBNET is a compiled language. An interpreter-based language means that the language relies on an interpreter to translate it, whereas a compiled language is already interpreted and ready for the machine to process. Because Windows 10 does not support many interpreter-based languages like VB6, it is impossible to edit and update the VB6 project using any modern IDE like Visual Studio. Visual Basic on the .NET Framework is native to the current version of Windows, and the workflow is easier to follow and more efficient than its predecessor. The original VB6 version of ITAS also relied heavily on a DLL to communicate between the telescope, hand paddle, and the software. VBNET does not need any dynamic libraries to do this because of its integrated serial port functionality.
-In a nutshell, ITAS is simply an interface that stores coordinates and other information of objects viewed by the telescope and allows the observer to orient the telescope quickly. The hand paddle created last semester will be used to provide additional functionality to interface between the software and the telescope orientation. Unfortunately, the Corona Virus outbreak has hindered the progress of many features in the updated version of ITAS, including the implementation of the hand paddle, telescope controls, and third-party application support with theSky. There is still a lot of work that needs to be done with the software, but the following report will describe in detail what has been accomplished in the last few months.
-2
+This basis of this project was to update, re-design, and migrate an old version of SFA’s Telescope Software called ITAS (Integrated Telescope Automation System). It is used at the University’s observatory to track objects using one of two large telescopes. The original software was last updated in 2006 by Dr. Bruton and was written in VB6 – a framework that was discontinued about fifteen years ago. Under the guidance and supervision of Dr. Timmons, I was tasked with the challenge of converting the outdated software into a more modern application that is easier to use and modify by migrating from VB6 to the VB.NET framework.
+
+In a nutshell, ITAS is simply an interface that stores coordinates and other information of objects viewed by the telescope and allows the observer to orient the telescope quickly. The hand paddle created last semester will be used to provide additional functionality to interface between the software and the telescope orientation. Unfortunately, the Corona Virus outbreak has hindered the progress of many features in the updated version of ITAS, including the implementation of the hand paddle, telescope controls, and third-party application support with theSky. The following report will describe in detail what has been accomplished in the last few months.
 
 # II. Startup/Background Application
-In ITAS version 1.0 (the original application), a startup screen opens every time a user starts the program. After entering his or her initials, a log file will be created to record most actions that take place in the main application. Figures 1 and 2 show a comparison between the old and new startup screens.
+In ITAS version 1.0 (the original VB6 application), a startup screen opens every time a user starts the program. After entering his or her initials, a log file will be created to record most actions that take place in the main application. Figures 1 and 2 show a comparison between the old and new startup screens.
+
 Figure 1: ITAS v1.0 Startup Window
+
 Figure 2: ITAS v2.0 Startup Window
+
 The functionality of the startup window in version 2.0 is nearly identical to the original; however, the operator now has the option for the system to automatically login the previous user, which can bypass the startup screen. The log file will create and save a new file per user; however, if the user already has an existing file, it will add to the existing one. This is a feature that can be easily modified if it’s unnecessary. The log file is saved to the same directory as before, but because version 1.0 does not work with Windows 10, there was some ambiguity in the content stored in the log file. The current system saves information like the type of telescope and timestamps for each action. More commands will be added in the future.
-    3
 
 # III. Main Application
 After the log file has been initialized, the main window appears. The main window contains the bulk of the application and is similar to the previous version but has slight improvements. Both versions are shown below in Figures 3 and 4.
+
 Figure 3: ITAS v1.0 Main Window
-    4
+
 Figure 4: ITAS v2.0 Main Window
 
 The most obvious change is the data structure of the star catalog. In the old version, the list of sky objects was displayed as text within a panel. In the updated version, a data table was used. The data is still stored and retrieved from a text file but is now displayed like an excel sheet. Sorting data is much easier this way because the operator simply has to click the title at the top of the table to sort by variable. By doing this, it eliminates the need for the “sorting” buttons shown above the catalog in Figure 3. Because this eliminates the need for these buttons, a search feature was implemented to quickly search for the star in the catalog and selects the object automatically. More details of the data table are in Section IV-D.
+
 Another difference between the two applications is the menu toolbar. From left to right, we have File, View, Edit, Tools, and Help drop-down menus to organize the functions added to the software. See Section IV for a list of each added toolbar.
+
 Figure 5: Categorized Regions of Code within Main Form
+
 There are also many new features and methods going on behind the scenes of this version of ITAS. First of all, I completely gutted the original ITAS software and started the new one from scratch. The file handling structure is efficient and easy to follow, with one “MasterFunctions.vb” file to control basic operations like writing to the log file, text file, debugging procedures, and more. Figure 5 shows the categories, or regions, of code in the main ITAS forms app. The main forms app contains code that populates and updates the menu, color preferences, form spacing, and commands for every button.
+
 The implementation of the “My.Settings” functionality is also used to efficiently store preferences and user data. Unlike VB6, VBNET uses an internal data saving structure that saves settings within the compiled code every time the app closes (similar to “.ini” or “.dat” files but integrated within the application). The old software used a DLL to interface between the telescope, remote, and software, but this method is no longer necessary. VBNET has a feature that allows a serial port connection without using the DLL and runs/refreshes in real time. Other changes are mentioned in Section IV.
- 5
 
 # IV. Details and Features
+
 A. Graphics
 Several old graphics were also gutted from the updated version of ITAS. Figure 6 shows the updated interactive graphic of the hand paddled (created last semester) used to display the remote controls. When the user hovers the mouse over any of the red buttons, a tool tip will appear describing what each button does. The icon for the software is also updated, created in Adobe Illustrator – shown in figure 7. The font and color schemes throughout the entire application is also slightly modified; it now uses Segoe UI font, a dark grey background for the buttons, and a darker red for the colors to reduce brightness. The font was also modified to include smooth edges and scales according to the size of the monitor.
+
 B. Menu Toolbar
 The old version only had three additional menu options. Below is a list of every toolbar drop-down category and the functionalities of their toolstrip menu items.
+
 1. File – useful “shortcuts” for the application
 a. Open Log File: This will simply open the user’s log file.
 b. Switch User: This will “log out” and open up the startup window. This may be
@@ -44,19 +52,21 @@ c. Exit: This exits the software completely.
 2. View–visualpreferences
 a. Enable/Disable Dark Mode: This will switch between the dark and light modes.
 When dark, the title will read “Disable Night Mode” and vice versa. Figure 8 on the following page shows the light mode visual style. Under the Edit > Preferences window, the user can even select whether or not he/she wants ITAS to start up in dark mode or not.
-    Figure 6: Hand Paddle Interactive Graphic
+ 
+ Figure 6: Hand Paddle Interactive Graphic
+ 
  Figure 7: Updated ITAS Icon
- 6
 
  Figure 8: Night Mode Disabled
+ 
 3. Edit – miscellaneous controls and preferences
 a. Sync To... This menu item was in the old version of ITAS and to my understanding,
 it was intended to sync to a third-party app (theSky) and grab data from it. I’m not sure if it is still necessary but included it in the menu just in case. It’s also worth noting that every control relating to theSky/Sky Survey are not functional yet.
 b. Preferences... This menu item will open another form/window: User Preferences. In this window, there are several options the user can edit. There are three tabs, shown in Figure 9. Currently, only the general tab is functional, but the telescope preferences tab will allow the operator to setup/select the telescope that is being used. The remote preferences tab will be used to setup the remote; although, the remote tab may be deemed unnecessary – depending on how the software will eventually recognize the connected remote. More settings can be added as necessary.
-Figure 9: Preferences Window
- 7
 
-4. Tools–launchesthird-partyapps
+Figure 9: Preferences Window
+
+4. Tools
 a. TheSky: This will launch the third-party app “TheSky” once it has been implemented.
 b. Google Earth: Again, I am unsure if this is even necessary, but this will launch the
 online version of google earth in the default browser and will load the coordinates of the SFA observatory. Here, you can find information like the sunset, weather conditions, etc.
