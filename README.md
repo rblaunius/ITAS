@@ -17,7 +17,7 @@ Figure 2: ITAS v2.0 Startup Window
 The functionality of the startup window in version 2.0 is nearly identical to the original; however, the operator now has the option for the system to automatically login the previous user, which can bypass the startup screen. The log file will create and save a new file per user; however, if the user already has an existing file, it will add to the existing one. This is a feature that can be easily modified if it’s unnecessary. The log file is saved to the same directory as before, but because version 1.0 does not work with Windows 10, there was some ambiguity in the content stored in the log file. The current system saves information like the type of telescope and timestamps for each action. More commands will be added in the future.
     3
 
-III. Main Application
+# III. Main Application
 After the log file has been initialized, the main window appears. The main window contains the bulk of the application and is similar to the previous version but has slight improvements. Both versions are shown below in Figures 3 and 4.
 Figure 3: ITAS v1.0 Main Window
     4
@@ -30,7 +30,7 @@ There are also many new features and methods going on behind the scenes of this 
 The implementation of the “My.Settings” functionality is also used to efficiently store preferences and user data. Unlike VB6, VBNET uses an internal data saving structure that saves settings within the compiled code every time the app closes (similar to “.ini” or “.dat” files but integrated within the application). The old software used a DLL to interface between the telescope, remote, and software, but this method is no longer necessary. VBNET has a feature that allows a serial port connection without using the DLL and runs/refreshes in real time. Other changes are mentioned in Section IV.
  5
 
-IV. Details and Features
+# IV. Details and Features
 A. Graphics
 Several old graphics were also gutted from the updated version of ITAS. Figure 6 shows the updated interactive graphic of the hand paddled (created last semester) used to display the remote controls. When the user hovers the mouse over any of the red buttons, a tool tip will appear describing what each button does. The icon for the software is also updated, created in Adobe Illustrator – shown in figure 7. The font and color schemes throughout the entire application is also slightly modified; it now uses Segoe UI font, a dark grey background for the buttons, and a darker red for the colors to reduce brightness. The font was also modified to include smooth edges and scales according to the size of the monitor.
 B. Menu Toolbar
@@ -75,7 +75,7 @@ As mentioned in previous sections, the data table is a new feature that organize
 After removing the sorting buttons, a search que feature was added in the space that the buttons were previously in. This might also be unnecessary, but it adds the capability to search for any star name in the catalog. It works by first creating an indexed array of all variables in the current configuration of the data table, then translating the queued text and each array string into lowercase, then searches for any match. For example, I one was search for “Galaxy” and was unsure which one, it will find the first data point with the word “galaxy” in the cell. Again, this needs more work but works as intended.
   8
 
-V. Incomplete Work and Future Improvements
+# V. Incomplete Work and Future Improvements
 Because of the current state of online classes/social distancing, I had limited access to complete everything I wanted to with the software. Several buttons/commands are incomplete and have no code attached to them. A list of Incomplete Work is shown below:
 • USB Hand Paddle Implementation: Because I did not have access to the hand paddle during this time, I could not implement the controls and analog buttons on the physical remote. However, I did test some of the controls using a joystick and it should be an easy transition when I have access to the remote.
 • Telescope Controls: This includes the serial port recognition, object tracking, frequency control, auto dome setting, and the main calibrated motor pulses. This is the “bread and butter” to the entire application but I could not find a way to implement the old functions into the software without having a serial port present. Also, because the old software used a DLL, it was hard – if not impossible for me to determine how to translate the old code into useable VBNET code. This is because I could not find any documentation on the ‘INPOUT32.dll’ and could not figure out what the various functions are intended to do in the original app. Because the telescope controls are not implemented, most of the main buttons do not work, including ‘SLEW TO’, the ‘load coordinates’ buttons, and the ‘reset guide rate report’ button. Once further clarification is given to me on these controls, it will be easy to implement.
@@ -93,7 +93,7 @@ As for future improvements, the most important improvements are obviously implem
 • Miscellaneous: The ‘Refresh’ button next to the remote should simply refresh serial and USB detection functions to check if the correct remote was plugged into the machine. I would also like to add a panel that gathers any relevant data from an external .html website that provides information such as sunset time, moon status, humidity, etc. for a quick and easy reference to the live environment. This may also be unnecessary but could be useful.
       10
 
-VI. Conclusion
+# VI. Conclusion
 This was a fun project. I started this semester with no experience with Visual Studio, VB6, or VBNET, and ended the semester with a partially complete template for future work to be added by anyone with software development skills. I used skills like Photoshop/Illustrator, basic programming and commenting etiquette, and efficient file/data structure techniques to achieve the version I have (somewhat) completed. Although there is still lots of work needing to be done, I believe I have created the perfect template for a new version of ITAS.
 This project sparked an interest in software development and allowed me to add a couple new skills to my resume including VBNET, Visual Studio, Simple Data Management, and GitHub Version Control. Although I am a mechanical engineering student, I am still keeping my career options open and have applied to several software development companies and have been looking into learning C# and C++ for basic application development.
 The GitHub repository for all versions and progress in the application can be found in the following link: https://github.com/rblaunius/itas
