@@ -1,7 +1,9 @@
 # Integrated Telescope Automation System (ITAS)
 
 Software Design Report
+
 Barrett Launius
+
 Spring 2020 
  
 # I. Introduction
