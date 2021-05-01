@@ -2,7 +2,7 @@
 Detailed Design Report
 Barrett Launius
 
-![alt text](https://i.imgur.com/UaeS1yY.png)
+![ITAS](https://i.imgur.com/UaeS1yY.png)  ![ITAS2](https://i.imgur.com/l0EXgic.png)
  
 # I. Introduction
 This project involves the update, re-design, and migration of an old version of SFA’s Telescope Software called ITAS (Integrated Telescope Automation System). It is used at the University’s observatory to track objects using one of two large telescopes. The original software was last updated in 2006 by Dr. Bruton and was written in VB6 – a framework that was discontinued about fifteen years ago. Under the guidance and supervision of Dr. Timmons, I was tasked with the challenge of converting the outdated software into a more modern application that is easier to use and modify by migrating from VB6 to the VB.NET Framework.
