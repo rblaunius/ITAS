@@ -1,6 +1,4 @@
 # Integrated Telescope Automation System (ITAS)
-Detailed Design Report
-Barrett Launius
 
 ![ITAS2](https://i.imgur.com/l0EXgic.png)
 
